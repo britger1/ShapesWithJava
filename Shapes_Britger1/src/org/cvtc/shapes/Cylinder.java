@@ -22,7 +22,7 @@ public class Cylinder extends Shape {
 	public Cylinder(float radius, float height) {
 		
 		//validate that all cylinder properties are greater than zero
-		if(radius > 0 || height > 0) {
+		if(radius > 0 && height > 0) {
 			//set properties of cylinder object
 			setRadius(radius);
 			setHeight(height);
@@ -30,7 +30,7 @@ public class Cylinder extends Shape {
 	}
 	
 	//retrieve radius property of the cylinder object
-	private float getRadius() {
+	public float getRadius() {
 		return radius;
 	}
 
@@ -40,7 +40,7 @@ public class Cylinder extends Shape {
 	}
 
 	//retrieve height property of the cylinder object
-	private float getHeight() {
+	public float getHeight() {
 		return height;
 	}
 

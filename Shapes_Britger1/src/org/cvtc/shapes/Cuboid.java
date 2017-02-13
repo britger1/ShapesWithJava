@@ -25,7 +25,7 @@ public class Cuboid extends Shape {
 	public Cuboid(float length, float width, float depth) {
 		
 		//validate that all cuboid properties are greater than zero
-		if(length > 0 || width > 0 || depth > 0) {
+		if(length > 0 && width > 0 && depth > 0) {
 			//set properties of cylinder object
 			setLength(length);
 			setWidth(width);
@@ -34,7 +34,7 @@ public class Cuboid extends Shape {
 	}
 
 	//retrieve length property of the cuboid object
-	private float getLength() {
+	public float getLength() {
 		return length;
 	}
 
@@ -44,7 +44,7 @@ public class Cuboid extends Shape {
 	}
 
 	//retrieve width property of the cuboid object
-	private float getWidth() {
+	public float getWidth() {
 		return width;
 	}
 
@@ -54,7 +54,7 @@ public class Cuboid extends Shape {
 	}
 
 	//retrieve depth property of the cuboid object
-	private float getDepth() {
+	public float getDepth() {
 		return depth;
 	}
 
