@@ -3,7 +3,8 @@
  */
 package org.cvtc.shapes;
 
-import javax.swing.JOptionPane;
+import org.cvtc.shapes.messaging.Dialog;
+import org.cvtc.shapes.messaging.Renderer;
 
 /**
  * @author Bradley
@@ -11,13 +12,14 @@ import javax.swing.JOptionPane;
  */
 
 //represents a sphere object that has the methods of the superclass "Shape"
-public class Sphere extends Shape {
+public class Sphere extends Shape implements Renderer{
 
 	//radius of the sphere object
 	private float radius = 0;
 
 	//create and set properties of sphere object
-	public Sphere(float radius) {
+	public Sphere(Dialog dialog, float radius) {
+		super(dialog);
 		
 		//validate radius is greater than zero
 		if(radius > 0) {
@@ -62,18 +64,12 @@ public class Sphere extends Shape {
 		
 		//display this message if radius is less than or equal to zero
 		if(getRadius() == 0) {
-			JOptionPane.showMessageDialog(null,
-				    "Invalid! Please enter a number greater than 0.",
-				    "Sphere",
-				    JOptionPane.PLAIN_MESSAGE);
+			getDialog().show("Invalid! Please enter a number greater than 0.", "Sphere");
 		//display this message if radius is greater than zero (valid)
 		} else {
-			JOptionPane.showMessageDialog(null,
-				    "Radius = " + getRadius() + 
+			getDialog().show("Radius = " + getRadius() + 
 				    "\nSurface area = " + surfaceArea() + 
-				    "\nVolume = " + volume(),
-				    "Sphere",
-				    JOptionPane.PLAIN_MESSAGE);
+				    "\nVolume = " + volume(), "Sphere");
 		}
 	}
 }

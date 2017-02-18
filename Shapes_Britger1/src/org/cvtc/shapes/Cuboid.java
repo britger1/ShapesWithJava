@@ -3,14 +3,15 @@
  */
 package org.cvtc.shapes;
 
-import javax.swing.JOptionPane;
+import org.cvtc.shapes.messaging.Dialog;
+import org.cvtc.shapes.messaging.Renderer;
 
 /**
  * @author Bradley
  *
  */
 //represents a cuboid object that has the methods of the superclass "Shape"
-public class Cuboid extends Shape {
+public class Cuboid extends Shape implements Renderer{
 	
 	//length of cuboid object
 	private float length = 0;
@@ -22,7 +23,8 @@ public class Cuboid extends Shape {
 	private float depth = 0;
 	
 	//create and set properties of cuboid object
-	public Cuboid(float length, float width, float depth) {
+	public Cuboid(Dialog dialog, float length, float width, float depth) {
+		super(dialog);
 		
 		//validate that all cuboid properties are greater than zero
 		if(length > 0 && width > 0 && depth > 0) {
@@ -84,25 +86,19 @@ public class Cuboid extends Shape {
 	}
 
 	@Override
-	//display message box with sphere object data
+	//display message box with cuboid object data
 	public void render() {
 		
 		//display this message if at least one cuboid object property is less than or equal to zero
 		if(getLength() == 0 || getWidth() == 0 || getDepth() == 0) {
-			JOptionPane.showMessageDialog(null,
-				    "Invalid! Please enter a number greater than 0.",
-				    "Cuboid",
-				    JOptionPane.PLAIN_MESSAGE);
+			getDialog().show("Invalid! Please enter a number greater than 0.", "Cuboid");
 		//display this message if all cuboid properties are greater than zero (valid)
 		} else {
-			JOptionPane.showMessageDialog(null,
-				    "Length = " + getLength() + 
+			getDialog().show("Length = " + getLength() + 
 				    "\nWidth = " + getWidth() +
 				    "\nDepth = " + getDepth() +
 				    "\nSurface area = " + surfaceArea() + 
-				    "\nVolume = " + volume(),
-				    "Cuboid",
-				    JOptionPane.PLAIN_MESSAGE);
+				    "\nVolume = " + volume(), "Cuboid");
 		}
 	}
 }

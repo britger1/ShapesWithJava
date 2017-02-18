@@ -3,14 +3,15 @@
  */
 package org.cvtc.shapes;
 
-import javax.swing.JOptionPane;
+import org.cvtc.shapes.messaging.Dialog;
+import org.cvtc.shapes.messaging.Renderer;
 
 /**
  * @author Bradley
  *
  */
 //represents a cylinder object that has the methods of the superclass "Shape"
-public class Cylinder extends Shape {
+public class Cylinder extends Shape implements Renderer{
 
 	//radius of cylinder object
 	private float radius = 0;
@@ -19,7 +20,8 @@ public class Cylinder extends Shape {
 	private float height = 0;
 	
 	//create and set properties of cylinder object
-	public Cylinder(float radius, float height) {
+	public Cylinder(Dialog dialog, float radius, float height) {
+		super(dialog);
 		
 		//validate that all cylinder properties are greater than zero
 		if(radius > 0 && height > 0) {
@@ -75,19 +77,13 @@ public class Cylinder extends Shape {
 		
 		//display this message if at least one cylinder object property is less than or equal to zero
 		if(getRadius() == 0 || getHeight() == 0) {
-			JOptionPane.showMessageDialog(null,
-				    "Invalid! Please enter a number greater than 0.",
-				    "Cylinder",
-				    JOptionPane.PLAIN_MESSAGE);
+			getDialog().show("Invalid! Please enter a number greater than 0.", "Cylinder");
 		//display this message if all cylinder properties are greater than zero (valid)
 		} else {
-			JOptionPane.showMessageDialog(null,
-				    "Radius = " + getRadius() + 
+			getDialog().show("Radius = " + getRadius() + 
 				    "\nHeight = " + getHeight() +
 				    "\nSurface area = " + surfaceArea() + 
-				    "\nVolume = " + volume(),
-				    "Cylinder",
-				    JOptionPane.PLAIN_MESSAGE);
+				    "\nVolume = " + volume(), "Cylinder");
 		}
 	}
 }
